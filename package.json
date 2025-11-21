@@ -13,12 +13,6 @@
     "open:android": "npx cap open android",
     "sync:android": "npx cap sync android"
   },
-  "overrides": {
-    "react-qr-reader": {
-      "react": "^18.2.0",
-      "react-dom": "^18.2.0"
-    }
-  },
   "dependencies": {
     "@capacitor-mlkit/barcode-scanning": "^7.3.0",
     "@capacitor/camera": "^7.0.2",
@@ -31,7 +25,6 @@
     "lucide-react": "^0.303.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-qr-reader": "^3.0.0-beta-1",
     "react-router-dom": "^6.21.0",
     "sonner": "^1.3.1",
     "tailwind-merge": "^2.2.0",
