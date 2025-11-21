@@ -1,0 +1,66 @@
+═══════════════════════════════════════════════════════════════════
+  📱 COMPILAR APK EN ANDROID STUDIO - PASOS SIMPLES
+═══════════════════════════════════════════════════════════════════
+
+🔴 PASO 1: ABRIR ANDROID STUDIO
+   → Abre Android Studio desde el menú de Windows
+   
+🔴 PASO 2: ABRIR EL PROYECTO
+   → File → Open
+   → Busca: D:\1TB\Nueva carpeta\Proyectos\Osvaldo\Chronelia\App\android
+   → Selecciona la carpeta "android" → OK
+
+🔴 PASO 3: ESPERAR GRADLE (¡IMPORTANTE!)
+   → Abajo a la derecha verás: "Gradle sync in progress..."
+   → ⏱️ ESPERA hasta que termine (3-10 minutos la primera vez)
+   → Cuando termine verás: "BUILD SUCCESSFUL"
+   
+🔴 PASO 4: COMPILAR APK
+   → Build (menú superior)
+   → Build Bundle(s) / APK(s)
+   → Build APK(s)
+   → ⏱️ Espera 2-5 minutos
+
+🔴 PASO 5: OBTENER EL APK
+   → Cuando termine, verás notificación verde: "APK(s) generated successfully"
+   → Click en "locate"
+   → Se abre el explorador con tu APK: app-debug.apk
+   → ¡LISTO! 🎉
+
+🔴 PASO 6: INSTALAR EN TU TELÉFONO
+   → Opción 1: Envíate el APK por WhatsApp y ábrelo en tu teléfono
+   → Opción 2: Copia el APK al teléfono por cable USB
+   → En el teléfono: Abre el APK → Permitir instalación → Instalar
+
+═══════════════════════════════════════════════════════════════════
+  UBICACIÓN DEL APK:
+  D:\1TB\Nueva carpeta\Proyectos\Osvaldo\Chronelia\App\android\app\build\outputs\apk\debug\app-debug.apk
+═══════════════════════════════════════════════════════════════════
+
+⚠️ ERRORES COMUNES:
+
+❌ "Gradle sync failed"
+   ✅ File → Invalidate Caches → Invalidate and Restart
+
+❌ "SDK not found"
+   ✅ File → Project Structure → SDK Location
+   ✅ Asegúrate que apunte a: C:\Users\TU_USUARIO\AppData\Local\Android\Sdk
+
+❌ "Build failed"
+   ✅ Build → Clean Project
+   ✅ Luego: Build → Build APK(s) de nuevo
+
+═══════════════════════════════════════════════════════════════════
+  PARA MÁS AYUDA: Lee COMPILAR_APK_PASO_A_PASO.md
+═══════════════════════════════════════════════════════════════════
+
+
+
+
+
+
+
+
+
+
+

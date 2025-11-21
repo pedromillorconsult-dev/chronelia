@@ -1,0 +1,157 @@
+============================================
+CHRONELIA v2.4 - ARCHIVOS CRÍTICOS BACKUP
+============================================
+
+📂 CÓDIGO FUENTE ESENCIAL:
+
+✅ ALTA PRIORIDAD (No perder nunca):
+  src/lib/supabase.js
+  src/lib/syncHelpers.js
+  src/lib/aiRecommendations.js
+  src/lib/notifications.js
+  src/pages/Login.jsx
+  src/components/RecommendationCards.jsx
+  src/store/useStore.js
+  .env
+  capacitor.config.json
+  package.json
+
+✅ CONFIGURACIÓN ANDROID:
+  android/app/src/main/res/values/styles.xml
+  android/app/src/main/res/mipmap-*/* (todos los iconos)
+  android/app/src/main/res/raw/chronelia-bell-notification-933.wav
+  android/app/build.gradle
+  android/app/capacitor.build.gradle
+  android/gradle/wrapper/gradle-wrapper.properties
+  android/local.properties
+
+✅ BASE DE DATOS:
+  SETUP_PRODUCCION_SUPABASE.sql
+  supabase_setup.sql
+
+✅ DOCUMENTACIÓN:
+  BACKUP_CHECKPOINT_v2.4.md
+  CHANGELOG_v2.4.md
+  FIX_FINAL_LOGIN.md
+  INSTRUCCIONES_PRODUCCION.md
+  INICIO_RAPIDO_PRODUCCION.md
+
+✅ APK COMPILADA:
+  Chronelia-v2.4-ESTABLE.apk
+
+============================================
+
+📋 ESTRUCTURA COMPLETA DEL PROYECTO:
+
+src/
+├── components/
+│   ├── layout/
+│   │   ├── BottomNav.jsx
+│   │   ├── Header.jsx
+│   │   ├── Layout.jsx
+│   │   └── Sidebar.jsx
+│   ├── ui/
+│   │   ├── Badge.jsx
+│   │   ├── Button.jsx
+│   │   ├── Card.jsx
+│   │   ├── Input.jsx
+│   │   └── Progress.jsx
+│   ├── QRScannerModal.jsx
+│   ├── RecommendationCards.jsx ⭐
+│   └── ReservationCard.jsx
+├── lib/
+│   ├── supabase.js ⭐
+│   ├── syncHelpers.js ⭐
+│   ├── aiRecommendations.js ⭐
+│   ├── notifications.js ⭐
+│   └── utils.js
+├── pages/
+│   ├── AdminPanel.jsx
+│   ├── Dashboard.jsx
+│   ├── History.jsx
+│   ├── Login.jsx ⭐
+│   ├── QRScanner.jsx
+│   ├── Recommendations.jsx
+│   ├── Settings.jsx
+│   ├── Statistics.jsx
+│   └── Workers.jsx
+├── store/
+│   └── useStore.js ⭐
+├── App.jsx
+├── index.css
+└── main.jsx
+
+============================================
+
+🔑 CREDENCIALES (Guardar en lugar seguro):
+
+Supabase URL:
+https://uzqtqflrhhjkcpkyfjoa.supabase.co
+
+Supabase ANON KEY:
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV6cXRxZmxyaGhqa2Nwa3lmam9hIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA4Nzk0OTYsImV4cCI6MjA3NjQ1NTQ5Nn0.tt_wAEnUqOxgaOrNYVgNo77ju64xdbMKyHdgPGG9Bvs
+
+Usuario Admin:
+- Username: admin
+- Password: chronelia2025
+- UUID: 00000000-0000-0000-0000-000000000001
+
+Android SDK Path:
+C:\Users\Slayer\AppData\Local\Android\Sdk
+
+============================================
+
+🛠️ COMANDOS PARA RECOMPILAR:
+
+1. Instalar dependencias:
+   npm install
+
+2. Compilar web:
+   npm run build
+
+3. Copiar a Android:
+   npm exec cap copy android
+
+4. Compilar APK:
+   cd android
+   .\gradlew clean assembleDebug
+
+5. APK se genera en:
+   android\app\build\outputs\apk\debug\app-debug.apk
+
+============================================
+
+⚙️ CONFIGURACIÓN JAVA:
+
+- Versión: Java JDK 17 (NO 21)
+- Gradle: 8.9 (NO 9.0-milestone)
+- Todos los build.gradle: JavaVersion.VERSION_17
+
+============================================
+
+📌 PUNTOS CRÍTICOS A RECORDAR:
+
+1. Login.jsx DEBE usar:
+   import { auth } from '@/lib/supabase'
+   NO usar mockAuth
+
+2. src/lib/supabase.js DEBE tener:
+   export const isDemoMode = false
+
+3. Credenciales hardcodeadas en:
+   src/lib/supabase.js líneas 6-7
+
+4. Después de npm exec cap copy android,
+   verificar que los archivos .gradle sigan
+   con VERSION_17 (el comando los puede revertir)
+
+============================================
+
+✅ ESTADO: v2.4 ESTABLE
+📅 Fecha: Octubre 21, 2025
+🏆 Funcional: 100%
+
+============================================
+
+
+

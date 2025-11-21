@@ -1,0 +1,205 @@
+// ============================================
+// CHRONELIA - INTEGRACIÓN CON OPENAI
+// ============================================
+
+const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY || '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'
+const OPENAI_MODEL = import.meta.env.VITE_OPENAI_MODEL || 'gpt-4o-mini'
+const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions'
+
+// Verificar si OpenAI está configurado
+export const isOpenAIConfigured = () => {
+  return Boolean(OPENAI_API_KEY && OPENAI_API_KEY !== 'sk-your-api-key-here')
+}
+
+/**
+ * Genera un contexto estructurado con las estadísticas actuales
+ * @param {Object} store - Store de Zustand con todos los datos
+ * @returns {string} Contexto formateado para la IA
+ */
+export function generateContext(store) {
+  const { activeReservations, workers, dailyStats, history } = store
+
+  // Calcular estadísticas en tiempo real
+  const totalReservations = history.length
+  const activeCount = activeReservations.length
+  const activeWorkers = workers.filter(w => w.active).length
+  const totalWorkers = workers.length
+
+  // Estadísticas de hoy
+  const today = new Date().toISOString().split('T')[0]
+  const todayStats = dailyStats.find(s => s.date === today) || {}
+
+  // Duración promedio
+  const avgDuration = history.length > 0
+    ? Math.round(history.reduce((acc, r) => acc + r.duration, 0) / history.length)
+    : 0
+
+  // Ingresos totales
+  const totalRevenue = dailyStats.reduce((acc, s) => acc + (s.revenue || 0), 0)
+
+  // Últimas reservas
+  const recentReservations = history.slice(-5).map(r => 
+    `${r.clientName} (${r.duration} min)`
+  ).join(', ')
+
+  return `
+Eres un asistente IA especializado en el sistema de gestión de reservas "chronelia". 
+
+DATOS ACTUALES DEL NEGOCIO:
+
+📊 RESERVAS:
+- Total de reservas: ${totalReservations}
+- Reservas activas ahora: ${activeCount}
+- Reservas hoy: ${todayStats.totalReservations || 0}
+- Últimas 5 reservas: ${recentReservations || 'Ninguna'}
+
+👥 PERSONAL:
+- Total de trabajadores: ${totalWorkers}
+- Trabajadores activos: ${activeWorkers}
+- Trabajadores inactivos: ${totalWorkers - activeWorkers}
+
+⏱️ TIEMPOS:
+- Duración promedio de servicio: ${avgDuration} minutos
+
+💰 INGRESOS:
+- Ingresos totales: $${totalRevenue.toLocaleString()}
+- Ingresos hoy: $${(todayStats.revenue || 0).toLocaleString()}
+- Clientes atendidos hoy: ${todayStats.customers || 0}
+
+INSTRUCCIONES:
+- Responde en español de forma clara y concisa
+- Usa emojis apropiados para hacer las respuestas más visuales
+- Proporciona datos específicos cuando sea relevante
+- Si te preguntan sobre estadísticas, usa los datos proporcionados arriba
+- Si detectas oportunidades de mejora, menciónalas
+- Sé amigable pero profesional
+- Formatea las respuestas con saltos de línea y bullets cuando sea apropiado
+- NO inventes datos que no están en el contexto
+`.trim()
+}
+
+/**
+ * Llama a la API de OpenAI para generar una respuesta
+ * @param {string} userMessage - Mensaje del usuario
+ * @param {Object} store - Store con datos de la app
+ * @param {Array} conversationHistory - Historial de la conversación
+ * @returns {Promise<string>} Respuesta de la IA
+ */
+export async function generateAIResponse(userMessage, store, conversationHistory = []) {
+  // Verificar configuración
+  if (!isOpenAIConfigured()) {
+    return `⚙️ **OpenAI no está configurado**
+
+Para usar el chat IA con respuestas avanzadas, necesitas:
+
+1. Obtener una API key de OpenAI en https://platform.openai.com/api-keys
+2. Agregar la key al archivo \`.env\`:
+   \`\`\`
+   VITE_OPENAI_API_KEY=sk-tu-api-key-aqui
+   \`\`\`
+3. Reiniciar la aplicación
+
+Mientras tanto, puedo responder preguntas básicas usando el sistema local.`
+  }
+
+  try {
+    console.log('🤖 Enviando petición a OpenAI...')
+    
+    // Preparar mensajes
+    const messages = [
+      {
+        role: 'system',
+        content: generateContext(store)
+      },
+      ...conversationHistory.slice(-10).map(msg => ({
+        role: msg.role,
+        content: msg.content
+      })),
+      {
+        role: 'user',
+        content: userMessage
+      }
+    ]
+
+    // Llamar a OpenAI API
+    const response = await fetch(OPENAI_API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: OPENAI_MODEL,
+        messages: messages,
+        temperature: 0.7,
+        max_tokens: 500,
+        presence_penalty: 0.6,
+        frequency_penalty: 0.3
+      })
+    })
+
+    if (!response.ok) {
+      const error = await response.json()
+      console.error('❌ Error de OpenAI:', error)
+      
+      // Errores específicos
+      if (response.status === 401) {
+        return '🔑 Error: API key inválida. Verifica tu configuración en el archivo `.env`'
+      }
+      if (response.status === 429) {
+        return '⏳ Has excedido el límite de peticiones. Intenta de nuevo en unos minutos.'
+      }
+      if (response.status === 500) {
+        return '🔧 OpenAI está experimentando problemas. Intenta de nuevo en unos minutos.'
+      }
+      
+      throw new Error(error.error?.message || 'Error desconocido')
+    }
+
+    const data = await response.json()
+    const aiMessage = data.choices[0]?.message?.content
+
+    if (!aiMessage) {
+      throw new Error('No se recibió respuesta de OpenAI')
+    }
+
+    console.log('✅ Respuesta recibida de OpenAI')
+    return aiMessage.trim()
+
+  } catch (error) {
+    console.error('💥 Error al llamar a OpenAI:', error)
+    
+    return `❌ **Error al conectar con OpenAI**
+
+${error.message}
+
+**Posibles soluciones:**
+• Verifica tu conexión a internet
+• Confirma que tu API key es válida
+• Revisa que tienes créditos disponibles en OpenAI
+• Intenta de nuevo en unos momentos
+
+Mientras tanto, puedo responder preguntas básicas usando el sistema local.`
+  }
+}
+
+/**
+ * Obtiene estadísticas de uso de la API
+ * @returns {Object} Información sobre el uso
+ */
+export function getAPIStatus() {
+  return {
+    configured: isOpenAIConfigured(),
+    model: OPENAI_MODEL,
+    hasKey: Boolean(OPENAI_API_KEY)
+  }
+}
+
+// Debug: Log del estado de configuración
+console.log('🔧 Estado de OpenAI:', {
+  configured: isOpenAIConfigured(),
+  model: OPENAI_MODEL,
+  hasKey: Boolean(OPENAI_API_KEY),
+  keyPreview: OPENAI_API_KEY ? `${OPENAI_API_KEY.substring(0, 10)}...` : 'No configurada'
+})
+

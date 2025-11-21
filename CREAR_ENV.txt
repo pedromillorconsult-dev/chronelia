@@ -1,0 +1,25 @@
+============================================
+IMPORTANTE: CREAR ARCHIVO .env
+============================================
+
+Para que la app se conecte a Supabase, necesitas crear un archivo llamado ".env"
+en la raíz del proyecto con este contenido:
+
+--------------------------------------------
+VITE_SUPABASE_URL=https://uzqtqflrhhjkcpkyfjoa.supabase.co
+VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV6cXRxZmxyaGhqa2Nwa3lmam9hIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA4Nzk0OTYsImV4cCI6MjA3NjQ1NTQ5Nn0.tt_wAEnUqOxgaOrNYVgNo77ju64xdbMKyHdgPGG9Bvs
+--------------------------------------------
+
+PASOS:
+1. Crea un nuevo archivo de texto en la raíz del proyecto
+2. Nómbralo exactamente: .env (sin extensión .txt)
+3. Copia y pega las dos líneas de arriba
+4. Guarda el archivo
+
+Una vez hecho esto, la app dejará de aceptar cualquier usuario
+y validará las credenciales contra Supabase.
+
+============================================
+
+
+
