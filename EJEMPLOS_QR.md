@@ -188,3 +188,4 @@ Si necesitas generar códigos QR reales para escanear con la cámara, usa herram
 
 
 
+

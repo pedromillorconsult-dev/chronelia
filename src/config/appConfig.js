@@ -78,3 +78,5 @@ export const SUPABASE_CONFIG = {
 console.log(`🚀 Chronelia iniciado en modo: ${APP_CONFIG.platform.toUpperCase()}`)
 console.log(`📱 Plataforma: ${isWebPlatform ? 'WEB (Admin Dashboard)' : 'MOBILE (Worker App)'}`)
 
+
+

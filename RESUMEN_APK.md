@@ -116,3 +116,4 @@ adb logcat | findstr Chronelia
 
 
 
+
