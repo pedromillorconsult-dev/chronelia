@@ -103,8 +103,10 @@ body.scanner-active .qr-scanner-overlay {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    background-repeat: no-repeat;
     filter: blur(8px);
     z-index: -2;
+    will-change: transform;
   }
   
   /* Overlay oscuro para mejor contraste */
