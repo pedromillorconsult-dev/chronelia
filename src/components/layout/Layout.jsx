@@ -10,7 +10,7 @@ export default function Layout() {
   const isWorker = !isAdmin
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Header />
       {/* Sidebar: Admin siempre, Trabajador solo en desktop */}
       {(isAdmin || isWorker) && (
