@@ -68,7 +68,7 @@ export default function Login() {
           </div>
         </div>
 
-        <Card>
+        <Card className="!bg-white !backdrop-filter-none shadow-2xl">
           <CardHeader>
             <CardTitle>Iniciar Sesión</CardTitle>
             <CardDescription>
