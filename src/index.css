@@ -84,9 +84,36 @@ body.scanner-active .qr-scanner-overlay {
   body {
     @apply text-foreground;
     font-feature-settings: 'rlig' 1, 'calt' 1;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-    background-attachment: fixed;
+    position: relative;
     min-height: 100vh;
+  }
+  
+  /* Fondo con imagen para versión web */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/fondo-web.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    filter: blur(8px);
+    z-index: -2;
+  }
+  
+  /* Overlay oscuro para mejor contraste */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.4) 50%, rgba(240, 147, 251, 0.3) 100%);
+    z-index: -1;
   }
   
   /* Glassmorphism utilities */
