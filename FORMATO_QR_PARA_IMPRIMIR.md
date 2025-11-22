@@ -9,6 +9,7 @@ Para que tus códigos QR funcionen con Chronelia, deben contener un JSON con est
   "clientName": "Nombre del Cliente",
   "clientEmail": "email@ejemplo.com",
   "duration": 30,
+  "groupSize": 2,
   "code": "CODIGO_UNICO"
 }
 ```
@@ -22,30 +23,31 @@ Para que tus códigos QR funcionen con Chronelia, deben contener un JSON con est
 | `clientName` | String | Nombre completo del cliente | "Juan Pérez" |
 | `clientEmail` | String | Email del cliente (opcional) | "juan@email.com" |
 | `duration` | Number | Duración en **minutos** | 30, 45, 60 |
+| `groupSize` | Number | Tamaño del grupo (opcional, default: 1) | 1, 2, 3, 4 |
 | `code` | String | Código único de la reserva | "RES001" |
 
 ---
 
 ## ✅ Ejemplos para Generar QRs
 
-### Ejemplo 1: Reserva de 30 minutos
+### Ejemplo 1: Reserva individual de 30 minutos
 ```json
-{"clientName":"María García","clientEmail":"maria@email.com","duration":30,"code":"QR001"}
+{"clientName":"María García","clientEmail":"maria@email.com","duration":30,"groupSize":1,"code":"QR001"}
 ```
 
-### Ejemplo 2: Reserva de 45 minutos
+### Ejemplo 2: Grupo de 2 personas, 45 minutos
 ```json
-{"clientName":"Carlos López","clientEmail":"carlos@email.com","duration":45,"code":"QR002"}
+{"clientName":"Carlos López","clientEmail":"carlos@email.com","duration":45,"groupSize":2,"code":"QR002"}
 ```
 
-### Ejemplo 3: Reserva de 60 minutos
+### Ejemplo 3: Grupo de 4 personas, 60 minutos
 ```json
-{"clientName":"Ana Martínez","clientEmail":"ana@email.com","duration":60,"code":"QR003"}
+{"clientName":"Ana Martínez","clientEmail":"ana@email.com","duration":60,"groupSize":4,"code":"QR003"}
 ```
 
-### Ejemplo 4: Reserva de 90 minutos
+### Ejemplo 4: Grupo de 3 personas, 90 minutos
 ```json
-{"clientName":"Pedro Sánchez","clientEmail":"pedro@email.com","duration":90,"code":"QR004"}
+{"clientName":"Pedro Sánchez","clientEmail":"pedro@email.com","duration":90,"groupSize":3,"code":"QR004"}
 ```
 
 ---
@@ -110,7 +112,7 @@ Para probar que tus QRs funcionan:
 
 1. Genera un QR con este JSON de prueba:
 ```json
-{"clientName":"Test Cliente","clientEmail":"test@chronelia.com","duration":15,"code":"TEST123"}
+{"clientName":"Test Cliente","clientEmail":"test@chronelia.com","duration":15,"groupSize":2,"code":"TEST123"}
 ```
 
 2. Abre Chronelia en tu móvil: `http://192.168.1.246:5173`

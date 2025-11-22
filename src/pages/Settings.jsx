@@ -16,9 +16,18 @@ export default function Settings() {
   const [soundEnabled, setSoundEnabled] = useState(true)
   const [defaultDuration, setDefaultDuration] = useState('30')
   const [warningTime, setWarningTime] = useState('5')
+  const [clientNumber, setClientNumber] = useState(
+    localStorage.getItem('chronelia_client_number') || ''
+  )
 
   const handleSave = () => {
-    // Guardar configuración (en una app real, esto se guardaría en el backend)
+    // Guardar configuración
+    if (clientNumber.trim()) {
+      localStorage.setItem('chronelia_client_number', clientNumber.trim())
+    } else {
+      localStorage.removeItem('chronelia_client_number')
+    }
+    
     toast.success('Configuración guardada', {
       description: 'Tus preferencias han sido actualizadas',
     })
@@ -209,20 +218,43 @@ export default function Settings() {
           </div>
         </CardHeader>
         <CardContent>
-          <div className="grid gap-3 text-sm">
-            <div className="flex justify-between">
-              <span className="text-muted-foreground">Versión</span>
-              <span className="font-medium">1.0.0</span>
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <label className="text-sm font-medium">
+                Número de Cliente / Negocio
+              </label>
+              <Input
+                type="text"
+                value={clientNumber}
+                onChange={(e) => setClientNumber(e.target.value)}
+                placeholder="Ej: CLI-001, NEGOCIO-123"
+              />
+              <p className="text-xs text-muted-foreground">
+                Identificador único para diferenciar entre diferentes negocios o ubicaciones
+              </p>
             </div>
-            <div className="flex justify-between">
-              <span className="text-muted-foreground">Última actualización</span>
-              <span className="font-medium">
-                {new Date().toLocaleDateString('es-ES')}
-              </span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-muted-foreground">Estado</span>
-              <span className="font-medium text-green-600">Operativo</span>
+            
+            <div className="border-t pt-4 grid gap-3 text-sm">
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Versión</span>
+                <span className="font-medium">1.0.0</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Última actualización</span>
+                <span className="font-medium">
+                  {new Date().toLocaleDateString('es-ES')}
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Estado</span>
+                <span className="font-medium text-green-600">Operativo</span>
+              </div>
+              {clientNumber && (
+                <div className="flex justify-between pt-2 border-t">
+                  <span className="text-muted-foreground">Número de Cliente</span>
+                  <span className="font-medium text-purple-600">{clientNumber}</span>
+                </div>
+              )}
             </div>
           </div>
         </CardContent>

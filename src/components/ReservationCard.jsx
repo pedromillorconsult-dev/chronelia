@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { Clock, User, Mail, Plus, CheckCircle, AlertCircle } from 'lucide-react'
+import { Clock, User, Mail, Plus, CheckCircle, AlertCircle, Users } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
@@ -106,6 +106,12 @@ export default function ReservationCard({ reservation }) {
                   <User className="h-3 w-3 md:h-4 md:w-4 flex-shrink-0" />
                   <span className="truncate">{reservation.worker}</span>
                 </div>
+                {reservation.groupSize && reservation.groupSize > 1 && (
+                  <div className="flex items-center space-x-2">
+                    <Users className="h-3 w-3 md:h-4 md:w-4 flex-shrink-0" />
+                    <span className="font-medium">{reservation.groupSize} personas</span>
+                  </div>
+                )}
               </div>
             </div>
             <div className={`text-2xl md:text-3xl font-bold ${timeColor} self-end md:self-start`}>

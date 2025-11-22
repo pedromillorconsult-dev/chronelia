@@ -117,6 +117,7 @@ export default function QRScannerModal({ isOpen, onClose }) {
         clientEmail: data.clientEmail || 'sin-email@ejemplo.com',
         qrCode: data.code || qrData,
         totalDuration: data.duration * 60,
+        groupSize: data.groupSize || 1,
         worker: user?.user_metadata?.full_name || user?.email || 'Trabajador',
       })
 
@@ -147,6 +148,7 @@ export default function QRScannerModal({ isOpen, onClose }) {
       clientEmail: 'test@chronelia.com',
       code: 'TEST' + Date.now(),
       duration: 30,
+      groupSize: 2,
     }
     processQRCode(JSON.stringify(testData))
   }

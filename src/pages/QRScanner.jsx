@@ -226,6 +226,7 @@ export default function QRScanner() {
         clientEmail: data.clientEmail || 'sin-email@ejemplo.com',
         qrCode: data.code || qrData,
         totalDuration: data.duration * 60, // convertir minutos a segundos
+        groupSize: data.groupSize || 1,
         worker: user?.user_metadata?.full_name || user?.email || 'Trabajador',
       })
 
@@ -255,6 +256,7 @@ export default function QRScanner() {
       clientEmail: 'maria.garcia@email.com',
       code: 'TEST' + Date.now(),
       duration: 45, // 45 minutos
+      groupSize: 3,
     }
     processQRCode(JSON.stringify(testData))
   }

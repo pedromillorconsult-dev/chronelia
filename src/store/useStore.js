@@ -95,6 +95,7 @@ const useStore = create((set, get) => ({
       remainingTime: 600, // 10 minutos restantes
       startTime: new Date(Date.now() - 20 * 60 * 1000), // Empezó hace 20 min
       worker: 'Trabajador Demo',
+      groupSize: 2,
       status: 'active',
       notified: false,
     }

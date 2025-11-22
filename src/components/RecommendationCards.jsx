@@ -27,12 +27,16 @@ export default function RecommendationCards() {
   }
 
   // Generar recomendaciones y filtrar las descartadas
-  const recommendations = generateRecommendations(store)
+  const recommendations = useMemo(() => generateRecommendations(store), [
+    store.activeReservations.length,
+    store.reservationHistory.length,
+    store.workers.length,
+  ])
   
   // Limitar a máximo 5 recomendaciones y excluir descartadas
   const displayedRecommendations = useMemo(() => 
     recommendations.filter(rec => !dismissedIds.includes(rec.id)).slice(0, 5),
-    [recommendations.length, dismissedIds.length]
+    [recommendations, dismissedIds]
   )
 
   useEffect(() => {
@@ -172,8 +176,16 @@ export default function RecommendationCards() {
     }
   }
 
-  const currentRecommendation = displayedRecommendations[currentIndex]
-  const priorityBadge = getPriorityBadge(currentRecommendation.priority)
+  // Memoizar la recomendación actual para evitar re-renders
+  const currentRecommendation = useMemo(() => 
+    displayedRecommendations[currentIndex],
+    [currentIndex, displayedRecommendations]
+  )
+  
+  const priorityBadge = useMemo(() => 
+    getPriorityBadge(currentRecommendation?.priority),
+    [currentRecommendation?.priority]
+  )
 
   return (
     <div className="space-y-3">
@@ -204,12 +216,12 @@ export default function RecommendationCards() {
       >
         <AnimatePresence mode="wait">
           <motion.div
-            key={currentIndex}
+            key={`${currentRecommendation?.id}-${currentIndex}`}
             initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -100 }}
             transition={{ 
-              duration: 0.6,
+              duration: 0.3,
               ease: [0.25, 0.1, 0.25, 1.0] // Curva de animación suave
             }}
           >
