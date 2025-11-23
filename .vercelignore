@@ -1,0 +1,5 @@
+# No subir archivos compilados - Vercel debe construir desde fuente
+node_modules
+dist
+.env.local
+
