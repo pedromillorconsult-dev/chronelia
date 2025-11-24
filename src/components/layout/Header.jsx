@@ -17,7 +17,7 @@ export default function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full glass-strong border-b border-white/20">
+    <header className="sticky top-0 z-50 w-full bg-white shadow-sm border-b border-gray-200">
       <div className="flex h-16 items-center px-3 md:px-4">
         {/* Botón menú: Admin siempre, Trabajador solo en desktop */}
         <Button
@@ -31,7 +31,7 @@ export default function Header() {
         
         <div className="flex items-center space-x-3">
           <img src="/logo.png" alt="chronelia" className="h-10 w-10 object-contain drop-shadow-lg" />
-          <h1 className="text-2xl font-bold bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent drop-shadow-md" style={{ fontFamily: 'Sora, sans-serif', fontWeight: 700 }}>
+          <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent" style={{ fontFamily: 'Sora, sans-serif', fontWeight: 700 }}>
             chronelia
           </h1>
         </div>

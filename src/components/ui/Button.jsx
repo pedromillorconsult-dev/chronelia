@@ -9,9 +9,9 @@ const Button = React.forwardRef(({ className, variant = 'default', size = 'defau
         {
           'bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600 shadow-lg': variant === 'default',
           'bg-gradient-to-r from-red-500 to-orange-500 text-white hover:from-red-600 hover:to-orange-600 shadow-lg': variant === 'destructive',
-          'glass border border-white/30 text-gray-800 hover:glass-strong': variant === 'outline',
-          'hover:glass text-gray-700': variant === 'ghost',
-          'glass-strong text-gray-800 hover:shadow-lg': variant === 'secondary',
+          'border border-gray-300 bg-white text-gray-800 hover:bg-gray-50': variant === 'outline',
+          'hover:bg-gray-100 text-gray-700': variant === 'ghost',
+          'bg-gray-100 text-gray-800 hover:bg-gray-200 hover:shadow-lg': variant === 'secondary',
           'h-10 py-2 px-4': size === 'default',
           'h-9 px-3': size === 'sm',
           'h-11 px-8': size === 'lg',
