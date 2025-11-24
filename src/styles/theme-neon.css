@@ -1,0 +1,128 @@
+/* TEMA NEON - Estilo cyberpunk con efectos neón */
+
+@layer base {
+  :root {
+    --background: 240 10% 3.9%;
+    --foreground: 280 100% 95%;
+    --card: 240 5% 8%;
+    --card-foreground: 280 100% 95%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 280 100% 95%;
+    --primary: 280 100% 70%;
+    --primary-foreground: 240 10% 3.9%;
+    --secondary: 180 100% 50%;
+    --secondary-foreground: 240 10% 3.9%;
+    --muted: 240 5% 15%;
+    --muted-foreground: 280 50% 70%;
+    --accent: 320 100% 60%;
+    --accent-foreground: 240 10% 3.9%;
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 280 100% 95%;
+    --border: 280 50% 30%;
+    --input: 240 5% 15%;
+    --ring: 280 100% 70%;
+    --radius: 0rem;
+  }
+}
+
+body {
+  background: hsl(var(--background));
+}
+
+/* Componentes con efectos neón */
+.theme-card {
+  background: hsl(var(--card));
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.3),
+              0 0 40px rgba(168, 85, 247, 0.1);
+  border: 2px solid hsl(var(--primary) / 0.5);
+}
+
+.theme-card:hover {
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.5),
+              0 0 60px rgba(168, 85, 247, 0.2);
+  border-color: hsl(var(--primary));
+}
+
+.theme-header {
+  background: hsl(var(--card));
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+  border-bottom: 2px solid hsl(var(--primary) / 0.5);
+}
+
+.theme-sidebar {
+  background: hsl(var(--card));
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
+  border-right: 2px solid hsl(var(--primary) / 0.5);
+}
+
+.theme-button-outline {
+  border: 2px solid hsl(var(--primary) / 0.5);
+  background: transparent;
+  color: hsl(var(--primary));
+  text-shadow: 0 0 10px hsl(var(--primary) / 0.5);
+}
+
+.theme-button-outline:hover {
+  background: hsl(var(--primary) / 0.1);
+  border-color: hsl(var(--primary));
+  box-shadow: 0 0 20px hsl(var(--primary) / 0.5);
+}
+
+.theme-button-ghost:hover {
+  background: hsl(var(--primary) / 0.1);
+  color: hsl(var(--primary));
+  text-shadow: 0 0 10px hsl(var(--primary) / 0.5);
+}
+
+.theme-button-secondary {
+  background: hsl(var(--secondary) / 0.2);
+  color: hsl(var(--secondary));
+  border: 2px solid hsl(var(--secondary) / 0.5);
+  text-shadow: 0 0 10px hsl(var(--secondary) / 0.5);
+}
+
+.theme-button-secondary:hover {
+  background: hsl(var(--secondary) / 0.3);
+  border-color: hsl(var(--secondary));
+  box-shadow: 0 0 20px hsl(var(--secondary) / 0.5);
+}
+
+.theme-sidebar-item-active {
+  background: hsl(var(--primary) / 0.2);
+  color: hsl(var(--primary));
+  border: 2px solid hsl(var(--primary));
+  box-shadow: 0 0 20px hsl(var(--primary) / 0.5);
+  text-shadow: 0 0 10px hsl(var(--primary) / 0.5);
+}
+
+.theme-sidebar-item {
+  color: hsl(var(--muted-foreground));
+  border: 2px solid transparent;
+}
+
+.theme-sidebar-item:hover {
+  background: hsl(var(--primary) / 0.1);
+  color: hsl(var(--primary));
+  border-color: hsl(var(--primary) / 0.3);
+  text-shadow: 0 0 10px hsl(var(--primary) / 0.3);
+}
+
+.theme-login-bg {
+  background: linear-gradient(to bottom right, 
+    hsl(240 10% 3.9%), 
+    hsl(280 80% 10%), 
+    hsl(320 80% 10%));
+}
+
+/* Animación de pulso neón */
+@keyframes neon-pulse {
+  0%, 100% {
+    text-shadow: 0 0 10px hsl(var(--primary) / 0.5),
+                 0 0 20px hsl(var(--primary) / 0.3);
+  }
+  50% {
+    text-shadow: 0 0 20px hsl(var(--primary) / 0.8),
+                 0 0 30px hsl(var(--primary) / 0.5);
+  }
+}
+

@@ -1,0 +1,86 @@
+/* TEMA MODERN - Diseño limpio con gradientes pastel */
+
+@layer base {
+  :root {
+    --background: 250 100% 97%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 262 83% 58%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 262 83% 58%;
+    --radius: 0.5rem;
+  }
+}
+
+/* Componentes específicos del tema */
+.theme-card {
+  background: white;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+.theme-header {
+  background: white;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+.theme-sidebar {
+  background: white;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  border-right: 1px solid hsl(var(--border));
+}
+
+.theme-button-outline {
+  border: 1px solid rgb(209 213 219);
+  background: white;
+  color: rgb(31 41 55);
+}
+
+.theme-button-outline:hover {
+  background: rgb(249 250 251);
+}
+
+.theme-button-ghost:hover {
+  background: rgb(243 244 246);
+}
+
+.theme-button-secondary {
+  background: rgb(243 244 246);
+  color: rgb(31 41 55);
+}
+
+.theme-button-secondary:hover {
+  background: rgb(229 231 235);
+}
+
+.theme-sidebar-item-active {
+  background: linear-gradient(to right, rgb(168 85 247), rgb(236 72 153));
+  color: white;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+}
+
+.theme-sidebar-item {
+  color: rgb(55 65 81);
+}
+
+.theme-sidebar-item:hover {
+  background: rgb(243 244 246);
+}
+
+.theme-login-bg {
+  background: linear-gradient(to bottom right, rgb(252 231 243), rgb(243 232 255), rgb(219 234 254));
+}
+

@@ -102,7 +102,7 @@ export default function Sidebar() {
           animate={{ x: 0 }}
           exit={{ x: -280 }}
           transition={{ duration: 0.3, ease: 'easeInOut' }}
-          className="fixed left-0 top-16 z-40 h-[calc(100vh-4rem)] w-64 bg-white shadow-lg border-r border-gray-200"
+          className="fixed left-0 top-16 z-40 h-[calc(100vh-4rem)] w-64 theme-sidebar"
         >
           <nav className="space-y-2 p-4">
             {menuItems.map((item) => (
@@ -114,8 +114,8 @@ export default function Sidebar() {
                   cn(
                     'flex items-center space-x-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200',
                     isActive
-                      ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg scale-105'
-                      : 'text-gray-700 hover:bg-gray-100 hover:scale-105'
+                      ? 'theme-sidebar-item-active scale-105'
+                      : 'theme-sidebar-item hover:scale-105'
                   )
                 }
               >

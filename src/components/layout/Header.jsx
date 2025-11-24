@@ -17,7 +17,7 @@ export default function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white shadow-sm border-b border-gray-200">
+    <header className="sticky top-0 z-50 w-full theme-header">
       <div className="flex h-16 items-center px-3 md:px-4">
         {/* Botón menú: Admin siempre, Trabajador solo en desktop */}
         <Button
