@@ -18,9 +18,6 @@ header {
 #root {
   min-height: 100vh;
   min-height: -webkit-fill-available;
-  background: transparent;
-  position: relative;
-  z-index: 0;
 }
 
 /* Estilos para el escáner de QR activo */
@@ -71,12 +68,7 @@ body.scanner-active .qr-scanner-overlay {
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 262 83% 58%;
-    --radius: 1rem;
-    
-    /* Glassmorphism variables */
-    --glass-bg: rgba(255, 255, 255, 0.25);
-    --glass-border: rgba(255, 255, 255, 0.18);
-    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    --radius: 0.5rem;
   }
 }
 
@@ -85,64 +77,8 @@ body.scanner-active .qr-scanner-overlay {
     @apply border-border;
   }
   body {
-    @apply text-foreground;
+    @apply bg-background text-foreground;
     font-feature-settings: 'rlig' 1, 'calt' 1;
-    position: relative;
-    min-height: 100vh;
-  }
-  
-  /* Fondo con imagen optimizada para versión web */
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('/fondo-web.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    filter: blur(8px);
-    z-index: -2;
-  }
-  
-  /* Overlay oscuro para mejor contraste */
-  body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.4) 50%, rgba(240, 147, 251, 0.3) 100%);
-    z-index: -1;
-  }
-  
-  /* Glassmorphism utilities */
-  .glass {
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--glass-shadow);
-  }
-  
-  .glass-strong {
-    background: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
-  }
-  
-  .glass-dark {
-    background: rgba(30, 30, 30, 0.3);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
   }
 }
 

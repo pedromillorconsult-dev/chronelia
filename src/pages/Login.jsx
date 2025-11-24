@@ -43,7 +43,7 @@ export default function Login() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center px-4 py-8">
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 px-4 py-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -59,16 +59,16 @@ export default function Login() {
             transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
           />
           <div className="text-center">
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent drop-shadow-lg" style={{ fontFamily: 'Sora, sans-serif', fontWeight: 700 }}>
-              chronelia.
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+              Chronelia
             </h1>
-            <p className="mt-2 text-sm text-white drop-shadow-md">
-              Sistema de Gestión de Reservas ✓
+            <p className="mt-2 text-sm text-muted-foreground">
+              Sistema de Gestión de Reservas
             </p>
           </div>
         </div>
 
-        <Card className="!bg-white !backdrop-filter-none shadow-2xl">
+        <Card>
           <CardHeader>
             <CardTitle>Iniciar Sesión</CardTitle>
             <CardDescription>
